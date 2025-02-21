@@ -31,16 +31,28 @@ test.describe('Pulpit tests', () => {
             await expect(page.locator('#show_messages')).toHaveText(`Przelew wykonany! ${expectedTransferReceiver} - ${transferAmount},00PLN - ${transferTitle}`);
     });
 
-    test.only('successful mobile top-up', async ({ page }) => {
-        await page.goto('https://demo-bank.vercel.app/');
-        await page.getByTestId('login-input').fill('testerlo');
-        await page.getByTestId('password-input').fill('password');
-        await page.getByTestId('login-button').click();
-        await page.locator('#widget_1_topup_receiver').selectOption('500 xxx xxx');
-        await page.locator('#widget_1_topup_amount').fill('150');
-        await page.locator('#uniform-widget_1_topup_agreement span').click();
-        await page.getByRole('button', { name: 'doładuj telefon' }).click();
-        await page.getByTestId('close-button').click();
-        await expect(page.locator('#show_messages')).toHaveText('Doładowanie wykonane! 150,00PLN na numer 500 xxx xxx');
+    test('successful mobile top-up', async ({ page }) => {
+            // Arrange
+            const url = 'https://demo-bank.vercel.app/index.html';
+            const userId = 'testerLo';
+            const userPassword = 'haslo123';
+            const option = '500 xxx xxx';
+            const amount = '150';
+
+            // Act
+            await page.goto(url);
+            await page.getByTestId('login-input').fill(userId);
+            await page.getByTestId('password-input').fill(userPassword);
+            await page.getByTestId('login-button').click();
+
+            await page.locator('#widget_1_topup_receiver').selectOption(option);
+            await page.locator('#widget_1_topup_amount').fill(amount);
+            await page.locator('#uniform-widget_1_topup_agreement span').click();
+            await page.getByRole('button', { name: 'doładuj telefon' }).click();
+            await page.getByTestId('close-button').click();
+
+            // Assert
+            await expect(page.locator('#show_messages')).toHaveText(`Doładowanie wykonane! ${amount},00PLN na numer ${option}`);
     });
+
 });

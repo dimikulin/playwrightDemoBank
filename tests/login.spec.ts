@@ -19,21 +19,36 @@ test.describe('User login to Demobank', () => {
         await expect(page.getByTestId('user-name')).toHaveText(expectedUsername);
   });
 
-  test('unsuccessful login with too short username', async ({ page }) => {
-    await page.goto('https://demo-bank.vercel.app/index.html');
-    await page.getByTestId('login-input').fill('tester');
-    await page.getByTestId('password-input').click();
+    test('unsuccessful login with too short username', async ({ page }) => {
+      // Arrange
+      const url = 'https://demo-bank.vercel.app/index.html';
+      const incorrectUserId = 'tester';
+      const errorLoginId = 'identyfikator ma min. 8 znaków';
 
-    await expect(page.getByTestId('error-login-id')).toHaveText('identyfikator ma min. 8 znaków');
+      // Act
+      await page.goto(url);
+      await page.getByTestId('login-input').fill(incorrectUserId);
+      await page.getByTestId('password-input').click();
+
+      // Assert
+      await expect(page.getByTestId('error-login-id')).toHaveText(errorLoginId);
   });
 
-  test('unsuccessful login with too short password', async ({ page }) => {
-    await page.goto('https://demo-bank.vercel.app/index.html');
-    await page.getByTestId('login-input').fill('testerLo');
-    await page.getByTestId('password-input').fill('haslo');
-    await page.getByTestId('password-input').blur(); //wyjście z danego pola
+    test('unsuccessful login with too short password', async ({ page }) => {
+      // Arrange
+      const url = 'https://demo-bank.vercel.app/index.html';
+      const userId = 'testerLo';
+      const incorrectUserPassword = 'haslo';
+      const errorLoginPassword = 'hasło ma min. 8 znaków';
 
-    await expect(page.getByTestId('error-login-password')).toHaveText('hasło ma min. 8 znaków');
+      // Act
+      await page.goto(url);
+      await page.getByTestId('login-input').fill(userId);
+      await page.getByTestId('password-input').fill(incorrectUserPassword);
+      await page.getByTestId('password-input').blur(); //wyjście z danego pola
+
+      //Assert
+      await expect(page.getByTestId('error-login-password')).toHaveText(errorLoginPassword);
   });
 
 });
