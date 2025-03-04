@@ -47,7 +47,7 @@ test.describe('Pulpit tests', () => {
                 await expect(page.locator('#show_messages')).toHaveText(`Doładowanie wykonane! ${amount},00PLN na numer ${option}`);
     });
 
-    test.only('correct balance after successful mobile top-up', async ({ page }) => {
+    test('correct balance after successful mobile top-up', async ({ page }) => {
         // Arrange
         const option = '500 xxx xxx';
         const amount = '150';
