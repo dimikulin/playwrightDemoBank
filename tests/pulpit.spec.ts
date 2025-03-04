@@ -3,7 +3,7 @@ import {loginData} from "../test-data/login.data";
 
 test.describe('Pulpit tests', () => {
 
-        test.beforeEach(async ({ page }) => {
+    test.beforeEach(async ({ page }) => {
                 const userId = loginData.userId;
                 const userPassword = loginData.userPassword;
 
@@ -12,7 +12,7 @@ test.describe('Pulpit tests', () => {
                 await page.getByTestId('password-input').fill(userPassword);
                 await page.getByTestId('login-button').click();
         })
-        test('successful login with correct credentials', async ({ page }) => {
+    test('successful login with correct credentials', async ({ page }) => {
                 // Arrange
                 const receiverId = '2';
                 const transferAmount = '150';
