@@ -68,4 +68,5 @@ test.describe('Pulpit tests', () => {
         await expect(page.locator('#show_messages')).toHaveText(expectedMessage);
         await expect(page.locator('#money_value')).toHaveText(`${expectedBalance}`);
     });
+
 });
