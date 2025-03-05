@@ -1,8 +1,11 @@
 import {Page} from "@playwright/test";
+import {SideMenuCompontent} from "../compontents/side-menu.compontent";
 
 export class PulpitPage {
     constructor(private page: Page) {
     }
+
+    sideMenu = new SideMenuCompontent(this.page);
 
     topupReceiver = this.page.locator('#widget_1_topup_receiver');
     topupAmount = this.page.locator('#widget_1_topup_amount');
