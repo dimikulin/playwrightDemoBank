@@ -10,10 +10,8 @@ test.describe('Pulpit tests', () => {
                 const userPassword = loginData.userPassword;
 
                 await page.goto('/index.html');
-        const loginPage = new LoginPage(page);
-        await loginPage.loginInput.fill(userId);
-        await loginPage.passwordInput.fill(userPassword);
-        await loginPage.loginButton.click();
+                const loginPage = new LoginPage(page);
+                await loginPage.login(userId, userPassword);
         })
     test('successful login with correct credentials', async ({ page }) => {
                 // Arrange

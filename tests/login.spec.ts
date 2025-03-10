@@ -3,9 +3,10 @@ import {loginData} from "../test-data/login.data";
 import {LoginPage} from "../pages/login.page";
 
 test.describe('User login to Demobank', () => {
-
+let loginPage: LoginPage;
     test.beforeEach(async ({ page }) => {
         await page.goto("/index.html");
+        loginPage = new LoginPage(page);
     })
 
     test('successful login with correct credentials', async ({ page }) => {
@@ -15,10 +16,7 @@ test.describe('User login to Demobank', () => {
         const expectedUsername = 'Jan Demobankowy';
 
         // Act
-        const loginPage = new LoginPage(page);
-        await loginPage.loginInput.fill(userId);
-        await loginPage.passwordInput.fill(userPassword);
-        await loginPage.loginButton.click();
+        loginPage.login(userId, userPassword);
 
         // Assert
         await expect(page.getByTestId('user-name')).toHaveText(expectedUsername);
