@@ -16,7 +16,9 @@ test.describe('Pulpit tests', () => {
                 await loginPage.login(userId, userPassword);
                 pulpitPage = new PulpitPage(page);
         })
-    test('successful login with correct credentials', async ({ page }) => {
+    test('successful login with correct credentials',
+        {tag: ["@pulpit", "@integration"]},
+        async ({ page }) => {
                 // Arrange
                 const receiverId = '2';
                 const transferAmount = '150';
@@ -29,7 +31,9 @@ test.describe('Pulpit tests', () => {
                 await expect(pulpitPage.showMessages).toHaveText(`Przelew wykonany! ${expectedTransferReceiver} - ${transferAmount},00PLN - ${transferTitle}`);
     });
 
-    test('successful mobile top-up', async ({ page }) => {
+    test('successful mobile top-up',
+        {tag: ["@pulpit", "@integration"]},
+        async ({ page }) => {
                 // Arrange
                 const option = '500 xxx xxx';
                 const amount = '150';
@@ -41,7 +45,9 @@ test.describe('Pulpit tests', () => {
                 await expect(pulpitPage.showMessages).toHaveText(`Doładowanie wykonane! ${amount},00PLN na numer ${option}`);
     });
 
-    test('correct balance after successful mobile top-up', async ({ page }) => {
+    test('correct balance after successful mobile top-up',
+        {tag: ["@pulpit", "@integration"]},
+        async ({ page }) => {
         // Arrange
         const option = '500 xxx xxx';
         const amount = '150';

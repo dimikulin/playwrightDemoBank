@@ -21,7 +21,9 @@ test.describe('Pulpit tests', () => {
         paymentPage = new PaymentPage(page);
     })
 
-    test('simple payment', async ({ page }) => {
+    test('simple payment',
+        {tag: "@integration"},
+        async ({ page }) => {
         // Arrange
         const transferReceiver = 'Pentacomp';
         const transferAccount = '12 3456 7890 1234 5678 9091 23211';

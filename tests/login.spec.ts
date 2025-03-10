@@ -9,7 +9,9 @@ let loginPage: LoginPage;
         loginPage = new LoginPage(page);
     })
 
-    test('successful login with correct credentials', async ({ page }) => {
+    test('successful login with correct credentials',
+        {tag: ["@login", "@smoke"]},
+        async ({ page }) => {
         // Arrange
         const userId = loginData.userId;
         const userPassword = loginData.userPassword;
@@ -22,7 +24,9 @@ let loginPage: LoginPage;
         await expect(page.getByTestId('user-name')).toHaveText(expectedUsername);
   });
 
-    test('unsuccessful login with too short username', async ({ page }) => {
+    test('unsuccessful login with too short username',
+        {tag: "@login"},
+        async ({ page }) => {
         // Arrange
         const incorrectUserId = 'tester';
         const errorLoginId = 'identyfikator ma min. 8 znaków';
@@ -36,7 +40,9 @@ let loginPage: LoginPage;
         await expect(loginPage.loginError).toHaveText(errorLoginId);
   });
 
-    test('unsuccessful login with too short password', async ({ page }) => {
+    test('unsuccessful login with too short password',
+        {tag: "@login"},
+        async ({ page }) => {
         // Arrange
         const userId = loginData.userId;
         const incorrectUserPassword = 'haslo';
