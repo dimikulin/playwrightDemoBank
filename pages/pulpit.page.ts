@@ -24,4 +24,19 @@ export class PulpitPage {
     showMessages = this.page.locator('#show_messages');
 
     moneyValue = this.page.locator('#money_value');
+
+    async loginWithCorrectCredentials(receiverId:string, transferAmount:string, transferTitle:string):Promise<void> {
+        await this.transferReceiver.selectOption(receiverId);
+        await this.transferAmount.fill(transferAmount);
+        await this.transferTitle.fill(transferTitle);
+        await this.wykonajButton.click();
+        await this.closeButton.click();
+    }
+    async successfulMobileTopup(option:string, amount:string):Promise<void> {
+        await this.topupReceiver.selectOption(option);
+        await this.topupAmount.fill(amount);
+        await this.topupAgreementSpan.click();
+        await this.doladujTelefonButton.click();
+        await this.closeButton.click();
+    }
 }
