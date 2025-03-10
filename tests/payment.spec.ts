@@ -22,7 +22,13 @@ test.describe('Pulpit tests', () => {
     })
 
     test('simple payment',
-        {tag: "@integration"},
+        {
+            tag: "@integration",
+            annotation:{
+                type:'documentation',
+                description:'https://www.youtube.com/watch?v=SzWs96aDyxk&list=PLfKhn9AcZ-cD2TCB__K7NP5XARaCzZYn7&index=29'
+            }
+        },
         async ({ page }) => {
         // Arrange
         const transferReceiver = 'Pentacomp';

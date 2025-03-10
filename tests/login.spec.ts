@@ -10,7 +10,13 @@ let loginPage: LoginPage;
     })
 
     test('successful login with correct credentials',
-        {tag: ["@login", "@smoke"]},
+        {
+            tag: ["@login", "@smoke"],
+            annotation:{
+                type: 'Happy path',
+                description: 'basic happy path test for login'
+            }
+            },
         async ({ page }) => {
         // Arrange
         const userId = loginData.userId;
