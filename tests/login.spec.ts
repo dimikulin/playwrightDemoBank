@@ -31,7 +31,9 @@ let loginPage: LoginPage;
   });
 
     test('unsuccessful login with too short username',
-        {tag: "@login"},
+        {
+            tag: ["@login", '@unhappy_path']
+        },
         async ({ page }) => {
         // Arrange
         const incorrectUserId = 'tester';
@@ -47,7 +49,9 @@ let loginPage: LoginPage;
   });
 
     test('unsuccessful login with too short password',
-        {tag: "@login"},
+        {
+            tag: ["@login", '@unhappy_path']
+        },
         async ({ page }) => {
         // Arrange
         const userId = loginData.userId;

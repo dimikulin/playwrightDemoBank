@@ -17,7 +17,13 @@ test.describe('Pulpit tests', () => {
                 pulpitPage = new PulpitPage(page);
         })
     test('successful login with correct credentials',
-        {tag: ["@pulpit", "@integration"]},
+        {
+            tag: ["@pulpit", "@integration"],
+            annotation:{
+                type:'documentation',
+                description:'https://www.youtube.com/watch?v=XjSZirX3x8c&list=PLfKhn9AcZ-cD2TCB__K7NP5XARaCzZYn7&index=31'
+            }
+        },
         async ({ page }) => {
                 // Arrange
                 const receiverId = '2';
